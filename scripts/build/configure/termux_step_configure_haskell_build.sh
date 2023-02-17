@@ -94,15 +94,14 @@ termux_step_configure_haskell_build() {
 	env $AVOID_GNULIB cabal configure \
 		$TERMUX_HASKELL_OPTIMISATION \
 		--prefix=$TERMUX_PREFIX \
-		--configure-option=--disable-rpath \
-		--configure-option=--disable-rpath-hack \
 		--configure-option=$HOST_FLAG \
-		--ghc-option=-optl-Wl,-rpath=$TERMUX_PREFIX/lib \
-		--ghc-option=-optl-Wl,--enable-new-dtags \
+		--ghc-options="-optl-Wl,-rpath=$TERMUX_PREFIX/lib -optl-Wl,--enable-new-dtags" \
 		--with-compiler="$(command -v ghc)" \
 		--with-ghc-pkg="$(command -v ghc-pkg)" \
 		--with-hsc2hs="$(command -v hsc2hs)" \
 		--hsc2hs-option=--cross-compile \
+		--extra-lib-dirs=$TERMUX_PREFIX/lib \
+		--extra-include-dirs=$TERMUX_PREFIX/include \
 		--with-ld=$LD \
 		--with-strip=$STRIP \
 		--with-ar=$AR \
