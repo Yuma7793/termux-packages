@@ -102,6 +102,7 @@ termux_step_configure_haskell_build() {
 		--hsc2hs-option=--cross-compile \
 		--extra-lib-dirs=$TERMUX_PREFIX/lib \
 		--extra-include-dirs=$TERMUX_PREFIX/include \
+		--enable-executable-static \
 		--with-ld=$LD \
 		--with-strip=$STRIP \
 		--with-ar=$AR \
